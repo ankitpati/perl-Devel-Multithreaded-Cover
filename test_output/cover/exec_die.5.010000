@@ -35,7 +35,7 @@ line  err   stmt   bran   cond    sub   code
 15    ***      1     50                 if ($pid) {
 16             1                            wait;
 17                                      } else {
-18    ***      0                    0       local *Devel::Cover::_report = sub { die "Badness happened!" };
+18    ***      0                    0       local *Devel::Multithreaded::Cover::_report = sub { die "Badness happened!" };
       ***      0                        
 19    ***      0                            exec "echo We want to be able to see this.";
 20                                      }

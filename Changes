@@ -1,4 +1,4 @@
-Devel::Cover history
+Devel::Multithreaded::Cover history
 
 {{$NEXT}}
  - Fix up tests with recent Math::BigInt versions (Ed J) (github 219)
@@ -10,7 +10,7 @@ Devel::Cover history
 Release 1.31 - 18 September 2018
  - Add queue for cpancover (Joel Berger)
  - Handle circular refs (Ed J) (github 164, 216)
- - Allow for $DEVEL_COVER_TEST_OPTS to be unset (Dick Franks) (github 217)
+ - Allow for $DEVEL_MULTITHREADED_COVER_TEST_OPTS to be unset (Dick Franks) (github 217)
 
 Release 1.30 - 14 July 2018
  - Fix incorrect merging of structure (Emiliya Boyadjieva) (github 199)
@@ -46,7 +46,7 @@ Release 1.27 - 20 September 2017
  - Fix low-level file locking (Graham Knop) (github 90)
 
 Release 1.26 - 24 July 2017
- - Untaint $DEVEL_COVER_OPTIONS (Alexey Sokolov) (github 187)
+ - Untaint $DEVEL_MULTITHREADED_COVER_OPTIONS (Alexey Sokolov) (github 187)
  - Add loose_perms option (Todd Rinaldo) (github 185)
  - Set EXTENDED_TESTING during cpancover runs
  - Improve version parsing for cpancover (Helmut Wollmersdorfer) (github 124)
@@ -162,13 +162,13 @@ Release 1.07 - 22 August 2013
  - Test against 5.19.1, 5.19.2 and 5.19.3
 
 Release 1.06 - 17 July 2013
- - More DEVEL_COVER_NO_TESTS changes for p5cover
+ - More DEVEL_MULTITHREADED_COVER_NO_TESTS changes for p5cover
 
 Release 1.05 - 17 July 2013
  - Quieten some deparse warnings
  - Fix errors in write_csv (Jim Keenan) (github 64)
  - Fix error in -inc/+inc docs and pod formatting (Olaf Alders) (github 65)
- - Add DEVEL_COVER_NO_TESTS option to not run any tests during p5cover
+ - Add DEVEL_MULTITHREADED_COVER_NO_TESTS option to not run any tests during p5cover
 
 Release 1.04 - 1 June 2013
  - Fix return code from cover (Kan Fushihara) (guthub 61)
@@ -194,7 +194,7 @@ Release 1.01 - 30 March 2013
 
 Release 1.00 - 10 February 2013
  - Fix segv in constant folding of xor ops (github 40)
- - Fix various problems running Devel::Cover under tainting (github 41)
+ - Fix various problems running Devel::Multithreaded::Cover under tainting (github 41)
  - Add JavaScript to filter results in html_basic (David Cantrell) (github 42)
    Use -norestrict option to keep previous behaviour
  - Document ability to mark code as uncoverable (github 45)
@@ -209,7 +209,7 @@ Release 0.98 - 25 November 2012
  - Fix links on html_basic report
  - Fix setting Inc under taint mode (Guillaume Aubert) (guthub 26, 33)
  - Test against 5.17.6
- - Improve warnings from Devel::Cover and reduce duplicates
+ - Improve warnings from Devel::Multithreaded::Cover and reduce duplicates
  - Make cover -test -nodelete work
  - Run cpancover with 5.16.2
  - Prefer bugs on github rather than RT
@@ -326,7 +326,7 @@ Release 0.78 - 17th May 2011
 
 Release 0.77 - 15th May 2011
  - Fix cover -test covering all the test files (Larry Leszczynski) (rt 65920)
- - Add DEVEL_COVER_IO_OPTIONS environment variable
+ - Add DEVEL_MULTITHREADED_COVER_IO_OPTIONS environment variable
  - Sort runs by start time
  - Add digests to DB
  - Add cover -make option (Olivier Mengué) (rt 44906)
@@ -339,7 +339,7 @@ Release 0.77 - 15th May 2011
 Release 0.76 - 18th April 2011
  - Move CHANGES file into root for search.cpan.org (rt 67541)
  - Add top level version subroutine (requested by H.Merijn Brand)
- - Add DEVEL_COVER_DB_FORMAT environment variable
+ - Add DEVEL_MULTITHREADED_COVER_DB_FORMAT environment variable
  - Add advisory locking to database IO operations
  - Explain what to do if regexp_eval.t ever fails again (Florian Ragwitz)
  - Remove leftovers from PERL_OBJECT (Florian Ragwitz)
@@ -352,7 +352,7 @@ Release 0.74 - 16th April 2011
  - Test against 5.12.3 and code frozen 5.14.0 (unreleased)
  - Fix tests to work with all releases of 5.13.x (rt 64210, 60901)
  - Avoid race condition writing DB structure files (Nicholas Clark)
- - Add debuglog method to Devel::Cover::DB::Structure (Nicholas Clark)
+ - Add debuglog method to Devel::Multithreaded::Cover::DB::Structure (Nicholas Clark)
  - Be more careful deleting DB structure files (Nicholas Clark)
  - Get cover -test to honour the db passed in
 
@@ -370,12 +370,12 @@ Release 0.72 - 27th September 2010
  - New dependency on Parallel::Iterator for cpancover
 
 Release 0.71 - 10th September 2010
- - Improve running of Devel::Cover on itself
+ - Improve running of Devel::Multithreaded::Cover on itself
  - Fix occasional parallel test failures
  - Test against 5.12.2
 
 Release 0.70 - 29th August 2010
- - Get Devel::Cover working better on itself
+ - Get Devel::Multithreaded::Cover working better on itself
  - Distribution should now pass on 5.13.* development releases
 
 Release 0.69 - 28th August 2010
@@ -490,7 +490,7 @@ Release 0.56 - 1st August 2006
  - Right justify numerical tabular html output (Sébastien Aperghis-Tramoni)
  - Work around ExtUtils::MakeMaker realclean bug (Florian Ragwitz) (rt 17324)
  - Don't try to delete db if it isn't there
- - The following changes were made at the Devel::Cover hackathon, sponsored by
+ - The following changes were made at the Devel::Multithreaded::Cover hackathon, sponsored by
    Best Practical
  - No longer create the temporary .version files (Leon Brocard)
  - Document Module::Build's testcover (Leon Brocard)
@@ -597,7 +597,7 @@ Release 0.46 - 23rd June 2004
 
 Release 0.45 - 27th May 2004
  - Cope with spaces in build path on Windows (Max Maischein)
- - Allow Devel::Cover to be used under mod_perl (Philippe M. Chiasson)
+ - Allow Devel::Multithreaded::Cover to be used under mod_perl (Philippe M. Chiasson)
  - Handle $x ||= 1 and friends nicely, including subs and *foo{THING}
  - Allow uncoverable code to be specified.  (Unfinished)
 
@@ -607,20 +607,20 @@ Release 0.44 - 18th May 2004
  - Replace run Makefile target with text and html
  - Fix up gcov2perl
  - Fail gracefully when covering a threaded program
- - Add DEVEL_COVER_OPTIONS environment variable
+ - Add DEVEL_MULTITHREADED_COVER_OPTIONS environment variable
 
 Release 0.43 - 2nd May 2004
  - Add +ignore and +select options, and change meaning of -ignore and
    -select options.  This is an interface change
- - Ignore coverage on Devel::Cover's files by default
+ - Ignore coverage on Devel::Multithreaded::Cover's files by default
  - Cover INIT and END blocks more reliably
  - Fix 5.6 on Windows.  Well, sort of
- - Add a message in Makefile.PL recommending against using Devel::Cover
+ - Add a message in Makefile.PL recommending against using Devel::Multithreaded::Cover
    on 5.6, especially under Windows
 
 Release 0.42 - 30th April 2004
  - Add SYNOPSIS section to README
- - Resolve links for Devel::Cover::Inc (Dave Rolsky)
+ - Resolve links for Devel::Multithreaded::Cover::Inc (Dave Rolsky)
  - Get things running on Windows again
 
 Release 0.41 - 29th April 2004
@@ -646,7 +646,7 @@ Release 0.40 - 24th March 2004
 
 Release 0.39 - 22nd March 2004
  - Major database rework to store runs
- - Add Devel::Cover::DB::Structure.pm
+ - Add Devel::Multithreaded::Cover::DB::Structure.pm
  - Check for Test::Differences in Makefile.PL
  - Test with perl5.9.2
  - Skip fork test on MSWin32
@@ -654,7 +654,7 @@ Release 0.39 - 22nd March 2004
 Release 0.38 - 12th March 2004
  - Allow coverage summary title to be changed (David Wheeler)
  - More care generating pod golden results
- - Small Devel::Cover::Op output fix
+ - Small Devel::Multithreaded::Cover::Op output fix
  - Handle "my $x = shift || []" and friends nicely
  - Add default_param test
  - Provide summary output to one decimal place
@@ -674,11 +674,11 @@ Release 0.36 - 9th March 2004
 Release 0.35 - 8th March 2004
  - Change Text2 to pick up version changes
  - Minor documentation updates
- - Minor changes to Devel::Cover::Op
+ - Minor changes to Devel::Multithreaded::Cover::Op
  - Add outputfile option to HTML output (David Wheeler)
- - Document -silent option to Devel::Cover
+ - Document -silent option to Devel::Multithreaded::Cover
  - Add -silent option to cover (David Wheeler)
- - Make Devel::Cover taint safe, or tolerant at least
+ - Make Devel::Multithreaded::Cover taint safe, or tolerant at least
  - Only add versioned golden results to tests that need them
  - Add trivial, md5 and module_no_inc tests
  - Increase flexibility of testing system to accomodate md5 test
@@ -703,7 +703,7 @@ Release 0.33 - 13th January 2004
  - Ensure runs are merged in the order they were created
  - Don't report multiple data from dynamically created subs
  - Add alias, alias1 and dynamic_subs tests
- - Fix and document Devel::Cover::Op
+ - Fix and document Devel::Multithreaded::Cover::Op
  - Redo subroutine coverage so anon subs are covered correctly in 5.6.x
 
 Release 0.32 - 4th January 2004
@@ -757,7 +757,7 @@ Release 0.25 - 10th October 2003
  - Start of some changes to cpancover HTML
 
 Release 0.24 - 10th October 2003
- - Paths in Devel::Cover::Inc in single quotes for Windows platforms
+ - Paths in Devel::Multithreaded::Cover::Inc in single quotes for Windows platforms
  - Add -dir option and default it to cwd
  - Ignore test.pl in cpancover
  - Display pod coverage in cpancover
@@ -798,10 +798,10 @@ Release 0.18 - 28th September 2002
  - Put or conditions the right way round
  - Allow for subclasses of coverage types
  - Add:
-     Devel::Cover::Condition_or_2.pm
-     Devel::Cover::Condition_or_3.pm
-     Devel::Cover::Condition_and_3.pm
-     Devel::Cover::Condition_xor_4.pm
+     Devel::Multithreaded::Cover::Condition_or_2.pm
+     Devel::Multithreaded::Cover::Condition_or_3.pm
+     Devel::Multithreaded::Cover::Condition_and_3.pm
+     Devel::Multithreaded::Cover::Condition_xor_4.pm
  - "use" all conditions in Criterion.pm, and nowhere else
  - Add support for xor, ||= and &&=
 
@@ -819,7 +819,7 @@ Release 0.15 - 5th September 2002
  - Reinstate coverage of subs in main:: which got lost somewhere (0.11?)
  - Bug fixes for use of uninitialised values
  - Automatically generate tests.  Well, their infrastructure anyway
- - Move Cover to lib/Devel/Cover to keep case insensitive filesystems happy
+ - Move Cover to lib/Devel/Multithreaded/Cover to keep case insensitive filesystems happy
  - Remove -detail option. (It belongs to cover.)
  - Work on op addresses and sequence numbers instead of just op addresses, to be
    (almost) unique
@@ -835,35 +835,35 @@ Release 0.15 - 5th September 2002
 
 Release 0.14 - 28th February 2002
  - Add a workaround for an AUTOLOAD bug in bleadperl
- - Add gcov2perl program to convert gcov files to Devel::Cover databases
+ - Add gcov2perl program to convert gcov files to Devel::Multithreaded::Cover databases
  - Get rid of // comments in xs file
 
 Release 0.13 - 14th October 2001
- - Forgot to allow for lack of Pod::Coverage in Devel::Cover::Pod.pm
+ - Forgot to allow for lack of Pod::Coverage in Devel::Multithreaded::Cover::Pod.pm
 
 Release 0.12 - 14th October 2001
  - Improve pod coverage by considering private subs
  - Add time coverage, aka profiling
  - Add:
-     Devel::Cover::DB::File.pm
-     Devel::Cover::Time.pm
+     Devel::Multithreaded::Cover::DB::File.pm
+     Devel::Multithreaded::Cover::Time.pm
  - Abstract summary and percentage calculations to appropriate classes
 
 Release 0.11 - 10th September 2001
  - Add pod coverage based on Pod::Coverage.pm
  - Put a full API on the database
  - Add:
-     Devel::Cover::Criterion.pm
-     Devel::Cover::Statement.pm
-     Devel::Cover::Condition.pm
-     Devel::Cover::Pod.pm
+     Devel::Multithreaded::Cover::Criterion.pm
+     Devel::Multithreaded::Cover::Statement.pm
+     Devel::Multithreaded::Cover::Condition.pm
+     Devel::Multithreaded::Cover::Pod.pm
  - Some improvements to the cover program
 
 Release 0.10 - 27th August 2001
  - Add cover program to generate reports
 
 Release 0.09 - 18th August 2001
- - Beef up Devel::Cover::DB
+ - Beef up Devel::Multithreaded::Cover::DB
 
 Release 0.08 - 18th August 2001
  - Provide better handling of files to report on or ignore
@@ -871,10 +871,10 @@ Release 0.08 - 18th August 2001
      added +inc, -ignore and -select
 
 Release 0.07 - 17th August 2001
- - Add an API to Devel::Cover::DB
+ - Add an API to Devel::Multithreaded::Cover::DB
 
 Release 0.06 - 10th August 2001
- - Rename Devel::Cover::Process to Devel::Cover::DB
+ - Rename Devel::Multithreaded::Cover::Process to Devel::Multithreaded::Cover::DB
  - Make the database a directory
  - Add fix for eval in filename. (Arthur Bergman <arthur@contiller.se>)
  - Add more tests and abstract away comparison subroutine
@@ -886,7 +886,7 @@ Release 0.05 - 9th August 2001
  - Get things working with ithreads
 
 Release 0.04 - 12th April 2001
- - Include Devel::Cover::Op
+ - Include Devel::Multithreaded::Cover::Op
  - Add condition coverage (sort of)
 
 Release 0.03 - 10th April 2001
@@ -896,6 +896,6 @@ Release 0.03 - 10th April 2001
 Release 0.02 - 10th April 2001
  - Add summary output
  - Add -S option to turn it off
- - Turn Devel::Cover::Process into a class
+ - Turn Devel::Multithreaded::Cover::Process into a class
 
 Release 0.01 - Initial release - 9th April 2001

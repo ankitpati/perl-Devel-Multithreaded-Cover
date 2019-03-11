@@ -1,5 +1,5 @@
 Reading database from ...
-Devel::Cover: Deleting old coverage for changed file tests/md5
+Devel::Multithreaded::Cover: Deleting old coverage for changed file tests/md5
 
 
 --------- ------ ------ ------ ------ ------

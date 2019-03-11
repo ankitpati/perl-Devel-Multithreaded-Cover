@@ -6,7 +6,7 @@ package test_inc_filter;
 use Test::More;
 use Cwd 'abs_path';
 use File::Spec;
-use Devel::Cover::Util 'remove_contained_paths';
+use Devel::Multithreaded::Cover::Util 'remove_contained_paths';
 
 plan tests => 2;
 

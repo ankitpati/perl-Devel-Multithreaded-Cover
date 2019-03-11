@@ -13,6 +13,6 @@ my $cmd = qq[$^X -e "print q(Hello, world.)"];
 my $output = `$cmd 2>&1`;
 is($output, "Hello, world.", "simple test with perl -e");
 
-$cmd = qq[$^X -Mblib -MDevel::Cover=-silent,1 -e "print q(Hello, world.)"];
+$cmd = qq[$^X -Mblib -MDevel::Multithreaded::Cover=-silent,1 -e "print q(Hello, world.)"];
 $output = `$cmd 2>&1`;
-is($output, "Hello, world.", "test with perl -MDevel::Cover,-silent,1 -e");
+is($output, "Hello, world.", "test with perl -MDevel::Multithreaded::Cover,-silent,1 -e");

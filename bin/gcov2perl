@@ -14,7 +14,7 @@ use warnings;
 
 # VERSION
 
-use Devel::Cover::DB;
+use Devel::Multithreaded::Cover::DB;
 
 use File::Path;
 use File::Spec;
@@ -51,7 +51,7 @@ sub add_cover {
     my %run;
     $run{collected} = ["statement"];
     $run{start} = $run{finish} = time;
-    my $structure = Devel::Cover::DB::Structure->new;
+    my $structure = Devel::Multithreaded::Cover::DB::Structure->new;
     $structure->add_criteria("statement");
     $structure->add_criteria("branch");
 
@@ -114,7 +114,7 @@ sub add_cover {
 
     my $run   = $run{start} . ".$$." . sprintf "%05d", rand 2 ** 16;
     my $db    = $Options->{db};
-    my $cover = Devel::Cover::DB->new(
+    my $cover = Devel::Multithreaded::Cover::DB->new(
         base      => $db,
         runs      => { $run => \%run },
         structure => $structure,
@@ -141,7 +141,7 @@ __END__
 
 =head1 NAME
 
-gcov2perl - convert gcov files to Devel::Cover databases
+gcov2perl - convert gcov files to Devel::Multithreaded::Cover databases
 
 =head1 SYNOPSIS
 
@@ -149,7 +149,7 @@ gcov2perl - convert gcov files to Devel::Cover databases
 
 =head1 DESCRIPTION
 
-Convert gcov files to Devel::Cover databases.
+Convert gcov files to Devel::Multithreaded::Cover databases.
 
 =head1 OPTIONS
 
@@ -167,7 +167,7 @@ To obtain coverage of XS files they must first be compiled with the appropriate
 options.  In a standard Makefile environment, such as that created by
 ExtUtils::MakeMaker, this can be accomplished with the command:
 
- HARNESS_PERL_SWITCHES=-MDevel::Cover make test \
+ HARNESS_PERL_SWITCHES=-MDevel::Multithreaded::Cover make test \
    CCFLAGS=-O0\ -fprofile-arcs\ -ftest-coverage \
    OTHERLDFLAGS=-fprofile-arcs\ -ftest-coverage
 
@@ -201,7 +201,7 @@ The following exit values are returned:
 
 =head1 SEE ALSO
 
- Devel::Cover
+ Devel::Multithreaded::Cover
 
 =head1 BUGS
 

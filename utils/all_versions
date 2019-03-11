@@ -15,7 +15,7 @@ use lib "utils";
 use Getopt::Long;
 use Parallel::Iterator "iterate_as_array";
 
-use Devel::Cover::BuildUtils qw( prove_command njobs );
+use Devel::Multithreaded::Cover::BuildUtils qw( prove_command njobs );
 
 my $Options = {
     build          => 0,

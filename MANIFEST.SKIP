@@ -15,8 +15,8 @@ pm_to_blib$
 cover_db/
 core$
 \.out$
-lib/Devel/Cover/Inc.pm$
-^Devel-Cover-
+lib/Devel/Multithreaded/Cover/Inc.pm$
+^Devel-Multithreaded-Cover-
 \.patch$
 \.rej$
 \.debug$

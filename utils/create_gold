@@ -19,7 +19,7 @@ use blib;
 use Config;
 exit if $Config{useithreads};
 
-use Devel::Cover::Test;
+use Devel::Multithreaded::Cover::Test;
 
 my @tests = @ARGV;
 
@@ -48,7 +48,7 @@ for my $test (@tests) {
         waitpid $pid, 0;
     } else {
         no warnings "redefine";
-        local *Devel::Cover::Test::run_test = sub {};
+        local *Devel::Multithreaded::Cover::Test::run_test = sub {};
         my $t = require "./$file" or die "Can't require $file: $!";
         $t->create_gold && print STDERR "\n";
         exit;

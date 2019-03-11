@@ -149,7 +149,7 @@ main() {
                 "$(dzil authordeps --missing)"
             ;;
         nice_cpus)
-            perl -Iutils -MDevel::Cover::BuildUtils=nice_cpus \
+            perl -Iutils -MDevel::Multithreaded::Cover::BuildUtils=nice_cpus \
                  -e "print nice_cpus"
             ;;
         all_versions)
@@ -268,9 +268,9 @@ main() {
             pi "Done"
             ;;
         cpancover-run)
-            export DEVEL_COVER_CPUS=10
+            export DEVEL_MULTITHREADED_COVER_CPUS=10
             while true; do
-                pi "Starting cpancover run at $(date) on $DEVEL_COVER_CPUS cpus"
+                pi "Starting cpancover run at $(date) on $DEVEL_MULTITHREADED_COVER_CPUS cpus"
                 $0 cpancover-rm-docker  # just in case something bad happened
                 $0 cpancover-latest | $0 cpancover
                 $0 cpancover-generate-html
@@ -307,9 +307,9 @@ main() {
             make
             rm -rf cover_db
             cp tests/trivial tests/change
-            $perl -Mblib -MDevel::Cover tests/change
+            $perl -Mblib -MDevel::Multithreaded::Cover tests/change
             cp tmp/change tests
-            $perl -Mblib -MDevel::Cover tests/change
+            $perl -Mblib -MDevel::Multithreaded::Cover tests/change
             $perl -Mblib bin/cover -report text
             rm tests/change
             ;;

@@ -38,11 +38,11 @@ __END__
 
 =head1 NAME
 
-DC::Test::Dist::M1 - Devel::Cover distribution test submodule
+DC::Test::Dist::M1 - Devel::Multithreaded::Cover distribution test submodule
 
 =head1 SYNOPSIS
 
-This module is only used as a Devel::Cover test of a complete distribution.
+This module is only used as a Devel::Multithreaded::Cover test of a complete distribution.
 
 =head1 DESCRIPTION
 

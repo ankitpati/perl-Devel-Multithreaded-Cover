@@ -12,7 +12,7 @@ use warnings;
 
 # VERSION
 
-use Devel::Cover::Collection;
+use Devel::Multithreaded::Cover::Collection;
 
 use Cwd qw( abs_path cwd );
 use Fcntl ":flock";
@@ -74,7 +74,7 @@ sub get_options {
 }
 
 sub newcp {
-    Devel::Cover::Collection->new(
+    Devel::Multithreaded::Cover::Collection->new(
         map { $_ => $Options->{$_} } qw(
             bin_dir
             docker
@@ -208,7 +208,7 @@ The following exit values are returned:
 
 =head1 SEE ALSO
 
- L<Devel::Cover>
+ L<Devel::Multithreaded::Cover>
 
 =head1 BUGS
 

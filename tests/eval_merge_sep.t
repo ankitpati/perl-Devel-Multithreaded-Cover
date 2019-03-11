@@ -10,7 +10,7 @@
 use strict;
 use warnings;
 
-use Devel::Cover::Test;
+use Devel::Multithreaded::Cover::Test;
 
 # print "QQQ\n";
 
@@ -39,7 +39,7 @@ my $run_test = sub {
 
 my $runs = 2;
 
-my $test = Devel::Cover::Test->new(
+my $test = Devel::Multithreaded::Cover::Test->new(
     "eval_merge_sep",
     db_name     => "complex_eval_merge_sep",
     golden_test => "eval_merge_sep.t",

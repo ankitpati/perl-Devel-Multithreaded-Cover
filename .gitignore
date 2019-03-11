@@ -14,7 +14,7 @@ Makefile.old
 blib/
 cover_db*/
 t/e2e/
-lib/Devel/Cover/Inc.pm
+lib/Devel/Multithreaded/Cover/Inc.pm
 pm_to_blib
 *.out
 *.tar.bz2
@@ -27,7 +27,7 @@ MYMETA.*
 Cover.def
 dll.base
 dll.exp
-Devel-Cover-*
+Devel-Multithreaded-Cover-*
 tags*
 README
 .build/

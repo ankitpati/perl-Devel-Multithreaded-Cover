@@ -1,5 +1,5 @@
 Reading database from ...
-Devel::Cover: Can't find digest for tests/final_op
+Devel::Multithreaded::Cover: Can't find digest for tests/final_op
 
 
 ----- ------ ------ ------ ------ ------

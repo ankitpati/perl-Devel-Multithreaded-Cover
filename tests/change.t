@@ -12,7 +12,7 @@ use warnings;
 
 use File::Copy;
 
-use Devel::Cover::Test;
+use Devel::Multithreaded::Cover::Test;
 
 if ($] == 5.008007) {
     eval "use Test::More skip_all => 'Crashes 5.8.7'";
@@ -44,7 +44,7 @@ EOT
     $test->run_command($test->test_command);
 };
 
-my $test = Devel::Cover::Test->new(
+my $test = Devel::Multithreaded::Cover::Test->new(
     $t,
     db_name         => "complex_$t",
     run_test        => $run_test,

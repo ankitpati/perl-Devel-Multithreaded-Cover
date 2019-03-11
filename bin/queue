@@ -25,9 +25,9 @@ plugin "Minion::Admin";
 helper results => sub { Mojo::File->new(shift->app->config->{results_dir}) };
 
 push app->static->paths->@*,        app->results->to_string;
-push app->commands->namespaces->@*, "Devel::Cover::Queue::Commands";
+push app->commands->namespaces->@*, "Devel::Multithreaded::Cover::Queue::Commands";
 
-package Devel::Cover::Queue::Commands::monitor {
+package Devel::Multithreaded::Cover::Queue::Commands::monitor {
     use Mojo::Base "Mojolicious::Command";
     use Mojo::IOLoop;
     use Mojo::UserAgent;
@@ -85,7 +85,7 @@ package Devel::Cover::Queue::Commands::monitor {
     }
 }
 
-package Devel::Cover::Queue::Commands::add {
+package Devel::Multithreaded::Cover::Queue::Commands::add {
     use Mojo::Base "Mojolicious::Command";
     use experimental "signatures";
 

@@ -3,7 +3,7 @@ use warnings;
 
 use Test::More;
 
-opendir my $d, 'lib/Devel/Cover/Report';
+opendir my $d, 'lib/Devel/Multithreaded/Cover/Report';
 my @reporters = grep { s/\.pm$// } readdir($d);
 closedir $d;
 
@@ -24,7 +24,7 @@ my @reporters_with_launch = qw(
 
 # Check that the expected reporters support the launch feature
 for my $reporter (@reporters) {
-    my $class = 'Devel::Cover::Report::' . $reporter;
+    my $class = 'Devel::Multithreaded::Cover::Report::' . $reporter;
     eval "require $class";
 
     if (grep { $_ eq $reporter } @reporters_with_launch) {

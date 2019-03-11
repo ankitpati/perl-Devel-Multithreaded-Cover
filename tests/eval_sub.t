@@ -10,7 +10,7 @@
 use strict;
 use warnings;
 
-use Devel::Cover::Test;
+use Devel::Multithreaded::Cover::Test;
 
 if ($] == 5.008007) {
     eval "use Test::More skip_all => 'Crashes 5.8.7'";
@@ -37,7 +37,7 @@ my $run_test = sub {
 
 my $runs = 4;
 
-my $test = Devel::Cover::Test->new(
+my $test = Devel::Multithreaded::Cover::Test->new(
     "eval3",
     db_name     => "complex_eval_sub",
     golden_test => "eval_sub.t",

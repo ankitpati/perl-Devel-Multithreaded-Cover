@@ -17,10 +17,10 @@ BEGIN {
 # VERSION
 }
 
-use Devel::Cover::DB;
-use Devel::Cover::Inc;
+use Devel::Multithreaded::Cover::DB;
+use Devel::Multithreaded::Cover::Inc;
 
-BEGIN { $VERSION //= $Devel::Cover::Inc::VERSION }
+BEGIN { $VERSION //= $Devel::Multithreaded::Cover::Inc::VERSION }
 
 use Config;
 use File::Spec;
@@ -30,8 +30,8 @@ use Getopt::Long;
 use Pod::Usage;
 use Storable qw( dclone );
 
-use Devel::Cover::Dumper;  # For debugging
-use Data::Dumper ();  # no import of Dumper (use Devel::Cover::Dumper if needed)
+use Devel::Multithreaded::Cover::Dumper;  # For debugging
+use Data::Dumper ();  # no import of Dumper (use Devel::Multithreaded::Cover::Dumper if needed)
 
 my $Options = {
     add_uncoverable_point    => [],
@@ -135,9 +135,9 @@ sub get_options {
 
 sub delete_db {
     for my $del (@_) {
-        my $db = Devel::Cover::DB->new(db => $del);
+        my $db = Devel::Multithreaded::Cover::DB->new(db => $del);
         unless ($db->is_valid) {
-            print "Devel::Cover: $del is an invalid database - ignoring\n"
+            print "Devel::Multithreaded::Cover: $del is an invalid database - ignoring\n"
                 unless $Options->{silent};
             next;
         }
@@ -177,7 +177,7 @@ sub mb_test_command {
 sub main {
     $|++;  # try to impose order on STDOUT and STDERR
 
-    if (!$ENV{DEVEL_COVER_SELF} && $INC{"Devel/Cover.pm"}) {
+    if (!$ENV{DEVEL_MULTITHREADED_COVER_SELF} && $INC{"Devel/Multithreaded/Cover.pm"}) {
         my $err = "$0 shouldn't be run with coverage turned on.\n";
         eval {
             require POSIX;
@@ -189,11 +189,11 @@ sub main {
 
     get_options;
 
-    $Devel::Cover::Silent = 1 if $Options->{silent};
+    $Devel::Multithreaded::Cover::Silent = 1 if $Options->{silent};
 
     $Options->{report} = [ grep {
         my $report = $_;
-        my $format = "Devel::Cover::Report::\u$report";
+        my $format = "Devel::Multithreaded::Cover::Report::\u$report";
         eval ("use $format");
         if ($@) {
             print "Error: $report is not a recognised output format\n$@\n\n";
@@ -207,7 +207,7 @@ sub main {
 
     $Options->{annotations} = [];
     for my $a (@{$Options->{annotation}}) {
-        my $annotation = "Devel::Cover::Annotation::\u$a";
+        my $annotation = "Devel::Multithreaded::Cover::Annotation::\u$a";
         eval ("use $annotation");
         if ($@) {
             print "Error: $a is not a recognised annotation\n\n$@";
@@ -225,7 +225,7 @@ sub main {
     my @argv = @ARGV;
     my $options = dclone($Options);
     my $report = $Options->{report}[0];
-    my $format = "Devel::Cover::Report::\u$report";
+    my $format = "Devel::Multithreaded::Cover::Report::\u$report";
     $format->get_options($options) if $format->can("get_options");
     my $dbname = File::Spec->rel2abs(@ARGV ? shift @ARGV : "cover_db");
     die "Can't open database $dbname\n"
@@ -261,8 +261,8 @@ sub main {
         $Options->{$_} = [] for qw( ignore ignoring select select_re );
 
         local $ENV{ -d "t" ? "HARNESS_PERL_SWITCHES" : "PERL5OPT" } =
-            ($ENV{DEVEL_COVER_TEST_OPTS} || "") .
-            " -MDevel::Cover=-db,$env_db_name$extra";
+            ($ENV{DEVEL_MULTITHREADED_COVER_TEST_OPTS} || "") .
+            " -MDevel::Multithreaded::Cover=-db,$env_db_name$extra";
 
         my $test = test_command();
 
@@ -313,7 +313,7 @@ sub main {
             my $path = Cwd::abs_path($0);
             my ($vol, $dir, $cover) = File::Spec->splitpath($path);
             my $gcov2perl = File::Spec->catpath($vol, $dir, 'gcov2perl');
-            my $o = $ENV{DEVEL_COVER_TEST_OPTS};
+            my $o = $ENV{DEVEL_MULTITHREADED_COVER_TEST_OPTS};
             my @opts = defined $o ? split " ", $o : ();
             # print STDERR "cover: test [$o]\n";
             my @c = ($^X, @opts, $gcov2perl, "-db", $dbname, @gc);
@@ -323,7 +323,7 @@ sub main {
     }
 
     print "Reading database from $dbname\n" unless $Options->{silent};
-    my $db = Devel::Cover::DB->new(
+    my $db = Devel::Multithreaded::Cover::DB->new(
         db               => $dbname,
         prefer_lib       => $Options->{prefer_lib},
         uncoverable_file => $Options->{uncoverable_file},
@@ -340,7 +340,7 @@ sub main {
     my $structure;
     my $read_structure = sub {
         unless ($structure) {
-            $structure = Devel::Cover::DB::Structure->new(base => $dbname);
+            $structure = Devel::Multithreaded::Cover::DB::Structure->new(base => $dbname);
             $structure->read_all;
         }
     };
@@ -348,10 +348,10 @@ sub main {
     for my $merge (@ARGV) {
         $read_structure->();
         print "Merging database from $merge\n" unless $Options->{silent};
-        my $mdb = Devel::Cover::DB->new(db => $merge);
+        my $mdb = Devel::Multithreaded::Cover::DB->new(db => $merge);
         $mdb = $mdb->merge_runs;
         $db->merge($mdb);
-        my $mst = Devel::Cover::DB::Structure->new(base => $merge);
+        my $mst = Devel::Multithreaded::Cover::DB::Structure->new(base => $merge);
         $mst->read_all;
         # print STDERR "Merging structure", Dumper($structure),
                      # "From ", Dumper($mst);
@@ -420,7 +420,7 @@ sub main {
     for my $report (@{$Options->{report}}) {
         @ARGV = @argv;
         my $options = dclone($Options);
-        my $format = "Devel::Cover::Report::\u$report";
+        my $format = "Devel::Multithreaded::Cover::Report::\u$report";
         $format->get_options($options) if $format->can("get_options");
         $format->report($db, $options);
 
@@ -575,7 +575,7 @@ and default (which equates to all available options).  However, if you know
 you only want coverage information for certain criteria it is better to only
 collect data for those criteria in the first place by specifying them at that
 point.  This will make the data collection and reporting processes faster and
-less memory intensive.  See the documentation for L<Devel::Cover> for more
+less memory intensive.  See the documentation for L<Devel::Multithreaded::Cover> for more
 information.
 
 If you want all *except* some criteria, then you can say something like
@@ -586,7 +586,7 @@ conflict.  For example, the different HTML reports will overwrite each other's
 results.
 
 The C<-test> option will delete the databases and run your tests to generate
-new coverage data before reporting on it.  L<Devel::Cover> knows how to work
+new coverage data before reporting on it.  L<Devel::Multithreaded::Cover> knows how to work
 with standard Perl Makefiles as well as L<Module::Build> based distributions.
 For detailed instructions see the documentation for ExtUtils::MakeMaker at
 L<https://metacpan.org/module/ExtUtils::MakeMaker> or for Module::Build at
@@ -597,7 +597,7 @@ The C<-gcov> option will try to run gcov on any XS code.  This requires that
 you are using gcc of course.  If you are using the C<-test> option will be
 turned on by default.
 
-The C<-prefer_lib> option tells Devel::Cover to report on files in the lib
+The C<-prefer_lib> option tells Devel::Multithreaded::Cover to report on files in the lib
 directory even if they were used from the blib directory.
 
 =head1 EXIT STATUS
@@ -612,7 +612,7 @@ With the -test option the exit status of the underlying test run is returned.
 
 =head1 SEE ALSO
 
-L<Devel::Cover>
+L<Devel::Multithreaded::Cover>
 
 =head1 BUGS
 

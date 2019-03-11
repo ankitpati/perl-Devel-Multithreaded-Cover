@@ -9,7 +9,7 @@
   - Regular Expression coverage
   - Indicate how to increase coverage?
   - BEGIN and CHECK blocks and code in modules.  Requires callbacks from perl?
-  - Create a base class for Devel::Cover::Branch and Devel::Cover::Condition
+  - Create a base class for Devel::Multithreaded::Cover::Branch and Devel::Multithreaded::Cover::Condition
   - Handle C< $y || "${p}qqq" >
     - 22:09 <@nothingmuch> return, redo, next, last, goto should probably all
                            be treated as short circuiting
@@ -47,7 +47,7 @@
   - JSON error in Archive::Extract and Test::LeakTrace
   - cover -write new_db doesn't work (needs structure?)
 - Testing:
-  - Be able to run Devel::Cover on itself
+  - Be able to run Devel::Multithreaded::Cover on itself
   - More comprehensive
   - Functional tests
   - Overhaul test system.  Include patt?

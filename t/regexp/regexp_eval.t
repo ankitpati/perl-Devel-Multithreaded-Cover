@@ -10,7 +10,7 @@ use Test::More tests => 1;
 # The following code doesn't do that, but entering the eval within the
 # regular expression involves a nextstate OP. We hook, among other
 # things, into those opcodes, and execute some of our own
-# code. Devel::Cover::use_file, to be precise. That function currently
+# code. Devel::Multithreaded::Cover::use_file, to be precise. That function currently
 # uses regular expressions, and therefore breaks shit.
 #
 # We currently avoid calling use_file at all within regexp evals. This

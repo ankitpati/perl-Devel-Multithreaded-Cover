@@ -31,7 +31,7 @@ The latest version of docker can be installed on Ubuntu as follows:
 You may need to add yourself to the docker group.
 
 To build the docker container, check out the
-[devel-cover-docker](https://github.com/pjcj/devel-cover-docker) project and
+[devel-multithreaded-cover-docker](https://github.com/pjcj/devel-multithreaded-cover-docker) project and
 follow the instructions there.
 
 If you want to use your own docker container, edit the file `utils/dc` to point
@@ -80,7 +80,7 @@ instances (probably only for development purposes), then you can pass
 `--results_dir` to the `utils/dc` script or change the `$CPANCOVER_RESULTS_DIR`
 variable there.
 
-The results consist of the Devel::Cover `cover_db` directory for each package
+The results consist of the Devel::Multithreaded::Cover `cover_db` directory for each package
 tested, including the generated HTML output for that DB and the JSON summary
 file.  Sitting above those directories is summary HTML providing links to the
 individual coverage reports.
@@ -111,13 +111,13 @@ the metacpan group.
 The server is currently running Ubuntu 16.04 LTS and was upgraded from 14.04
 LTS.
 
-The Devel::Cover directory from which cpancover is run is in `/cover/dc`.  It
-is a git checkout of the Devel::Cover repository but, ideally, that should be
+The Devel::Multithreaded::Cover directory from which cpancover is run is in `/cover/dc`.  It
+is a git checkout of the Devel::Multithreaded::Cover repository but, ideally, that should be
 treated as a read-only directory.  The staging directory is symlinked to
 `/cover/staging`.
 
 In addition to hosting and running cpancover.com, I also use this server for
-some development work, and in particular for testing Devel::Cover against all
+some development work, and in particular for testing Devel::Multithreaded::Cover against all
 the versions of perl which are supported, plus recent development versions.
 For each version there is a standard and a threaded plenv installation.
 

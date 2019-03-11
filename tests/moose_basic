@@ -8,7 +8,7 @@
 # http://www.pjcj.net
 
 # __COVER__ skip_test $] < 5.010 || !(eval "use Moose; 23")
-# __COVER__ skip_reason Moose not available or unreliable with Devel::Cover
+# __COVER__ skip_reason Moose not available or unreliable with Devel::Multithreaded::Cover
 
 package Foo;
 use Moose;

@@ -43,7 +43,7 @@ extern "C" {
 #define _aMY_CXT
 #endif
 
-#define MY_CXT_KEY "Devel::Cover::_guts" XS_VERSION
+#define MY_CXT_KEY "Devel::Multithreaded::Cover::_guts" XS_VERSION
 
 #define PDEB(a) a
 #define NDEB(a) ;
@@ -261,8 +261,8 @@ static char *hex_key(char *key) {
 }
 
 static void set_firsts_if_needed(pTHX) {
-    SV *init = (SV *)get_cv("Devel::Cover::first_init", 0);
-    SV *end  = (SV *)get_cv("Devel::Cover::first_end",  0);
+    SV *init = (SV *)get_cv("Devel::Multithreaded::Cover::first_init", 0);
+    SV *end  = (SV *)get_cv("Devel::Multithreaded::Cover::first_end",  0);
     NDEB(svdump(end));
     if (PL_initav && av_len(PL_initav) >= 0)
     {
@@ -314,7 +314,7 @@ static int check_if_collecting(pTHX_ COP *cop) {
             XPUSHs(sv_2mortal(newSVpv(file, 0)));
             PUTBACK;
 
-            count = call_pv("Devel::Cover::use_file", G_SCALAR);
+            count = call_pv("Devel::Multithreaded::Cover::use_file", G_SCALAR);
 
             SPAGAIN;
 
@@ -450,7 +450,7 @@ static void store_module(pTHX) {
 static void call_report(pTHX) {
     dSP;
     PUSHMARK(SP);
-    call_pv("Devel::Cover::report", G_VOID|G_DISCARD|G_EVAL);
+    call_pv("Devel::Multithreaded::Cover::report", G_VOID|G_DISCARD|G_EVAL);
     SPAGAIN;
 }
 
@@ -658,7 +658,7 @@ static void dump_conditions(pTHX) {
 
 #if PERL_VERSION > 18
 /* For if ($a || $b) and unless ($a && $b), rpeep skips past a few
- * logops and messes with Devel::Cover
+ * logops and messes with Devel::Multithreaded::Cover
  *
  * This function will find the skipped op if there is one
  */
@@ -1194,7 +1194,7 @@ static void initialise(pTHX) {
         MY_CXT.modules    = newHV();
         *tmp              = newRV_inc((SV*) MY_CXT.modules);
 
-        MY_CXT.files      = get_hv("Devel::Cover::Files", FALSE);
+        MY_CXT.files      = get_hv("Devel::Multithreaded::Cover::Files", FALSE);
 
 #ifdef USE_ITHREADS
         HvSHAREKEYS_off(MY_CXT.statements);
@@ -1212,7 +1212,7 @@ static void initialise(pTHX) {
         MY_CXT.covering            = All;
         MY_CXT.tid                 = tid++;
 
-        MY_CXT.replace_ops = SvTRUE(get_sv("Devel::Cover::Replace_ops", FALSE));
+        MY_CXT.replace_ops = SvTRUE(get_sv("Devel::Multithreaded::Cover::Replace_ops", FALSE));
         NDEB(D(L, "running with Replace_ops as %d\n", MY_CXT.replace_ops));
     }
 }
@@ -1396,7 +1396,7 @@ typedef OP *B__OP;
 typedef AV *B__AV;
 
 
-MODULE = Devel::Cover PACKAGE = Devel::Cover
+MODULE = Devel::Multithreaded::Cover PACKAGE = Devel::Multithreaded::Cover
 
 PROTOTYPES: ENABLE
 

@@ -1,5 +1,5 @@
 Reading database from ...
-Devel::Cover: Deleting old coverage for changed file tests/change
+Devel::Multithreaded::Cover: Deleting old coverage for changed file tests/change
 
 
 ------------ ------ ------ ------ ------ ------
