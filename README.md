@@ -1,5 +1,10 @@
 # `Devel::Multithreaded::Cover`
 
+## Under Development!
+
+This project is currently under development, so expect everything around here
+to be utterly incomplete, unstable, and generally not fit for production use.
+
 ## Code coverage metrics for Multi-Process Perl
 
 This is a fork of the [`Devel::Cover`](http://github.com/pjcj/Devel--Cover
